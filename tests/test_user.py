@@ -1,5 +1,5 @@
-from Diplom_2.client.user import User
-from Diplom_2.const import Constants, ResponseBody
+from client.user import User
+from const import Constants, ResponseBody
 import pytest
 import allure
 from faker import Faker
