@@ -1,5 +1,5 @@
-from Diplom_2.client.order import Order
-from Diplom_2.const import Constants, ResponseBody
+from client.order import Order
+from const import Constants, ResponseBody
 import allure
 
 
