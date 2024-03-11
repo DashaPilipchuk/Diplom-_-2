@@ -32,3 +32,5 @@ class ResponseBody:
         "success": False,
         "message": "One or more ids provided are incorrect"
     }
+    SUCCESS = True
+

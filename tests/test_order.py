@@ -12,7 +12,8 @@ class TestOrder:
         order = Order()
         headers = {'Authorization': prepare_user}
         response = order.post_create_order(Constants.URL, headers=headers, data=data)
-        assert response.status_code == 200
+        response_data = response.json()
+        assert response.status_code == 200 and response_data.get("success") == ResponseBody.SUCCESS
 
     @allure.title('create order without authorization')
     def test_create_order_without_authorization(self, prepare_user):
@@ -22,7 +23,8 @@ class TestOrder:
         order = Order()
         headers = {'Authorization': ''}
         response = order.post_create_order(Constants.URL, headers=headers, data=data)
-        assert response.status_code == 200
+        response_data = response.json()
+        assert response.status_code == 200 and response_data.get("success") == ResponseBody.SUCCESS
 
     @allure.title('create order without Ingredients')
     def test_create_order_without_Ingredients(self, prepare_user):
@@ -49,10 +51,11 @@ class TestOrder:
         order = Order()
         headers = {'Authorization': prepare_order}
         response = order.get_user_orders(Constants.URL, headers=headers)
-        assert response.status_code == 200
+        response_data = response.json()
+        assert response.status_code == 200 and response_data.get("success") == ResponseBody.SUCCESS
 
     @allure.title('get order list without authorization')
-    def test_get_order_list_with_authorization(self, prepare_order):
+    def test_get_order_list_without_authorization(self, prepare_order):
         order = Order()
         headers = {'Authorization': ''}
         response = order.get_user_orders(Constants.URL, headers=headers)

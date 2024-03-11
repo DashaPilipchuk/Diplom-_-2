@@ -9,4 +9,4 @@ class Order:
 
     @allure.step('get user orders')
     def get_user_orders(self, url, headers):
-        return requests.get(f'{url}/api/orders', headers)
+        return requests.get(f'{url}/api/orders', headers=headers)

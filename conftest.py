@@ -34,20 +34,12 @@ def delete_user():
 
 
 @pytest.fixture()
-def prepare_order():
-    data_user = {
-        "email": fake_email,
-        "password": fake_password,
-        "name": fake_name
-    }
-    user = User()
-    response = user.post_create_user(Constants.URL, data_user)
-    token = response.json()["accessToken"]
+def prepare_order(prepare_user):
     data_order = {
         "ingredients": Constants.VALID_HASH
     }
     order = Order()
-    headers = {'Authorization': token}
+    headers = {'Authorization': prepare_user}
     order.post_create_order(Constants.URL, headers=headers, data=data_order)
-    yield token
-    user.delete_user(Constants.URL, headers=headers)
+    return prepare_user
+
